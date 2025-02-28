@@ -12,7 +12,7 @@ class Database():
         
     def enter_server(self, server_id, channel_id):
         self.cur.execute("""
-            INSERT INTO channel VALUES (?, ?)""", (server_id, channel_id))
+            INSERT OR IGNORE INTO channel VALUES (?, ?)""", (server_id, channel_id))
         self.con.commit()
 
     def fetch_channel(self, server_id):
@@ -21,3 +21,10 @@ class Database():
             serverid = ?""", (server_id,))
         
         return res.fetchone()[0] if res is not None else -1 
+
+    def set_channel(self, server_id, channel_id):
+        res = self.cur.execute("""
+            UPDATE channel SET
+            channelid = ?
+            WHERE serverid = ?""", (channel_id, server_id))
+        self.con.commit()

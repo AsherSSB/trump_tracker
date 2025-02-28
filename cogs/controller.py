@@ -7,15 +7,20 @@ class Controller(commands.Cog):
         self.bot = bot
         self.db = Database() 
 
-    @discord.app_commands.command(name="enterserver")
-    async def hello_world(self, interaction):
+    @discord.app_commands.command(name="ttsetserver")
+    async def set_server(self, interaction):
         self.db.enter_server(interaction.guild.id, interaction.channel_id)
-        await interaction.response.send_message("Entered Server ID")
+        await interaction.response.send_message("Server set")
 
-    @discord.app_commands.command(name="fetchchannel")
+    @discord.app_commands.command(name="ttfetchchannel")
     async def fetch_channel(self, interaction):
         res = self.db.fetch_channel(interaction.guild.id)
-        await interaction.response.send_message(res)
+        await interaction.response.send_message(f"channel set to {interaction.channel}")
+ 
+    @discord.app_commands.command(name="ttsetchannel")
+    async def set_channel(self, interaction):
+        self.db.set_channel(interaction.guild.id, interaction.channel_id)
+        await interaction.response.send_message(f"channel set to {interaction.channel}")
 
 
 async def setup(bot):
