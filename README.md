@@ -18,7 +18,7 @@ https://discord.com/oauth2/authorize?client_id=1344879849029894175&permissions=1
 [![ko-fi banner](https://www.isleofelsi.com/wp-content/uploads/2023/10/KoFi-750px.jpg)](https://ko-fi.com/asherromanenghi)
 
 Like this bot? Consider supporting me on Kofi! Any amount is appreciated and helps me keep this bot up and running.
-![ko-fi.com/asherromanenghi](https://ko-fi.com/asherromanenghi)
+[ko-fi.com/asherromanenghi](https://ko-fi.com/asherromanenghi)
 
 ![This bot was build using discord.py](https://github.com/Rapptz/discord.py)
 
