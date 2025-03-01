@@ -3,7 +3,8 @@ from discord.ext import commands
 from custom.database import Database
 from custom.scraper import Scraper
 from custom.gpt import Clickbait
-
+from datetime import datetime
+import pytz
 
 class Loop(commands.Cog):
     def __init__(self, bot):
@@ -12,6 +13,9 @@ class Loop(commands.Cog):
         self.clickbait = Clickbait()
         self.recentheadline = None
         self.recentlink = None
+
+    async def start_loop(self):
+        pass
 
     @discord.app_commands.command(name="postnews")
     async def post_recent(self, interaction):
