@@ -14,6 +14,15 @@ https://discord.com/oauth2/authorize?client_id=1344879849029894175&permissions=1
 - Use the `/postnews` command to post the latest and most controversial news article about Donald Trump
 - Wait! The bot will post articles into your desired channel during regular news hours.
 
+If you would like to host this bot yourself, you must
+1. Clone this repository
+2. `pip install -r requirements.txt` to download required packages
+3. Create a new Discord bot through the Discord developer portal
+4. Copy and paste the secret key into a .env file in the project root directory and give it the varaible name `DISCORD_TOKEN`
+5. Copy and paste a DeepSeek API key into the same .env file and give it the varaible name `GPT_TOKEN`
+ - If you would like to use another AI service, you must navigate to custom/gpt and edit the name of the model to your desired LLM
+6. Start the bot using `python main.py` in the project root directory
+
 ### Support Me
 [![ko-fi banner](https://www.isleofelsi.com/wp-content/uploads/2023/10/KoFi-750px.jpg)](https://ko-fi.com/asherromanenghi)
 
