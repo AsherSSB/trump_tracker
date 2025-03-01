@@ -28,3 +28,7 @@ class Database():
             channelid = ?
             WHERE serverid = ?""", (channel_id, server_id))
         self.con.commit()
+
+    def get_all_servers(self):
+        self.cur.execute("SELECT serverid, channelid FROM channel")
+        return self.cur.fetchall()

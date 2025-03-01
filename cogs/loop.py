@@ -1,8 +1,9 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
+import asyncio
 from custom.database import Database
-from custom.scraper import Scraper
-from custom.gpt import Clickbait
+from custom.scrape import Scraper
+from custom.gpt import ClickbaitRating
 from datetime import datetime
 import pytz
 
@@ -10,12 +11,38 @@ class Loop(commands.Cog):
     def __init__(self, bot):
         self.scraper = Scraper()
         self.bot = bot
-        self.clickbait = Clickbait()
+        self.clickbait = ClickbaitRating()
         self.recentheadline = None
         self.recentlink = None
+        self.db = Database()
+        self.news_loop.start() 
 
-    async def start_loop(self):
-        pass
+    def cog_unload(self):
+        self.news_loop.cancel()
+
+    @tasks.loop(minutes=1)
+    async def news_loop(self):
+        now = datetime.now(pytz.timezone("US/Eastern"))
+        target_times = [(11, 0), (22, 6)]  # 11:00 AM and 8:00 PM
+
+        current_time = (now.hour, now.minute)
+        if current_time in target_times:
+            article = await self.get_most_controversial()
+            self.recentheadline = article[0]
+            self.recentlink = article[1]
+            
+            servers = self.db.get_all_servers()
+            for guild_id, channel_id in servers:
+                channel = self.bot.get_channel(channel_id)
+                if channel:
+                    try:
+                        await channel.send(f"# {self.recentheadline}\n{self.recentlink}")
+                    except discord.errors.Forbidden:
+                        print(f"Cannot send to channel {channel_id} in guild {guild_id}")
+
+    @news_loop.before_loop
+    async def before_news_loop(self):
+        await self.bot.wait_until_ready()
 
     @discord.app_commands.command(name="postnews")
     async def post_recent(self, interaction):
@@ -43,7 +70,7 @@ class Loop(commands.Cog):
 
         for task in tasks:
             index = int(task.get_name())
-            rating = task.result()  # Safe to access results now
+            rating = task.result()
             if rating > max_rating:
                 max_rating = rating
                 best_index = index
@@ -57,4 +84,4 @@ class Loop(commands.Cog):
 
 
 async def setup(bot):
-    bot.add_cog(Loop(bot))
+    await bot.add_cog(Loop(bot))
