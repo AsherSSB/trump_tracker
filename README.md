@@ -14,7 +14,7 @@ https://discord.com/oauth2/authorize?client_id=1344879849029894175&permissions=1
 - Use the `/postnews` command to post the latest and most controversial news article about Donald Trump
 - Wait! The bot will post articles into your desired channel during regular news hours.
 
-### Credit
+### Support Me
 [![ko-fi banner](https://www.isleofelsi.com/wp-content/uploads/2023/10/KoFi-750px.jpg)](https://ko-fi.com/asherromanenghi)
 
 Like this bot? Consider supporting me on Kofi! Any amount is appreciated and helps me keep this bot up and running.
