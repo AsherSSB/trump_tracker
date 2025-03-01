@@ -6,7 +6,7 @@ from discord.ext import commands
 class Client(commands.Bot):
     
     def __init__(self):
-        intents = discord.Intents.all()
+        intents = discord.Intents.default()
         intents.guilds = True
         super().__init__(command_prefix="!", intents=intents)
 

@@ -23,7 +23,8 @@ class Loop(commands.Cog):
     @tasks.loop(minutes=1)
     async def news_loop(self):
         now = datetime.now(pytz.timezone("US/Eastern"))
-        target_times = [(11, 0), (22, 6)]  # 11:00 AM and 8:00 PM
+        # 8am, 11am, 2pm, 5pm, 8pm, 11pm 
+        target_times = [(8, 0), (11, 0), (14, 0), (17, 0), (20, 0), (23, 0)]
 
         current_time = (now.hour, now.minute)
         if current_time in target_times:
