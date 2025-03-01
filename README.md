@@ -20,7 +20,7 @@ If you would like to host this bot yourself, you must
 3. Create a new Discord bot through the Discord developer portal
 4. Copy and paste the secret key into a .env file in the project root directory and give it the varaible name `DISCORD_TOKEN`
 5. Copy and paste a DeepSeek API key into the same .env file and give it the varaible name `GPT_TOKEN`
- - If you would like to use another AI service, you must navigate to custom/gpt and edit the name of the model to your desired LLM
+   - If you would like to use another AI service, you must navigate to custom/gpt and edit the name of the model to your desired LLM
 6. Start the bot using `python main.py` in the project root directory
 
 ### Support Me
