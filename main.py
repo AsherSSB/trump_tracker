@@ -51,7 +51,7 @@ async def on_ready():
 @bot.event
 async def on_guild_join(guild):
     db = Database()
-    await guild.system_channel.send(f"Hello!! {guild.system_channel.id}")
+    await guild.system_channel.send(f"Hello! Check my description to get started.")
     db.enter_server(guild.id, guild.system_channel.id)
 
 async def main():
