@@ -4,7 +4,7 @@ import os
 
 class ClickbaitRating():
     def __init__(self):
-        self.prompts = [{"role": "system", "content": "for each response, give a simple 1-10 rating on how provocative it is. You MUST repond with nothing more than a number rating"}, {"role": "user", "content":""}]
+        self.prompts = [{"role": "system", "content": "for each response, give a rating 1.0-10.0 on how controversial the news title is. You MUST repond with nothing more than a number rating."}, {"role": "user", "content":""}]
         self.model = "deepseek-chat"
         self.max_tokens = 10
 

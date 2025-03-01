@@ -2,12 +2,14 @@ import discord
 from discord.ext import commands
 from custom.database import Database
 from custom.gpt import ClickbaitRating
+from custom.scrape import Scraper
 
 class Controller(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.db = Database() 
         self.clickbait = ClickbaitRating()
+        self.scraper = Scraper()
 
     @discord.app_commands.command(name="ttsetserver")
     async def set_server(self, interaction):
@@ -29,6 +31,27 @@ class Controller(commands.Cog):
         await interaction.response.send_message("logging...")
         res = self.clickbait.generate_rating(prompt)
         await interaction.followup.send(content=res)
+
+    @discord.app_commands.command(name="testscrape")
+    async def test_scrape(self, interaction):
+        await interaction.response.send_message("logging...")
+        res = self.scraper.get_headlines()
+        print(res)
+
+    @discord.app_commands.command(name="controversey")
+    async def post_controversial(self, interaction):
+        await interaction.response.send_message("logging")
+        articles = self.scraper.get_headlines()
+        max_rating = -1
+        best_index = None
+        for index, headline in enumerate([article[0] for article in articles]):
+            rating = float(self.clickbait.generate_rating(headline))
+            if rating > max_rating:
+                max_rating = rating
+                best_index = index
+            print(headline, rating)
+        print("\n\nBEST: " + articles[best_index][0])
+
 
 async def setup(bot):
     await bot.add_cog(Controller(bot))
