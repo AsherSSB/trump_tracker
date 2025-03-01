@@ -6,8 +6,8 @@ class Scraper():
         self.urls = [
             "https://www.bbc.com", 
             "https://www.cnn.com",
+            "https://www.foxnews.com/",
             "https://www.newsmax.com/",
-            "https://www.washingtonpost.com/",
             "https://www.nbcnews.com/",
             "https://www.wsj.com/",
         ]
@@ -29,7 +29,7 @@ class Scraper():
             for tag in soup.find_all(['h1', 'h2', 'h3']):
                 link = tag.find('a')
                 text = tag.get_text(strip=True) 
-                if link and ("Trump" in text or "Musk" in text) and text not in headlines:
+                if link and "Trump" in text and text not in headlines:
                     headlines.append(text)
                     href = link.get('href', '')
                     if href.startswith('/'):
@@ -38,8 +38,7 @@ class Scraper():
 
             for link in soup.find_all('a'):
                 heading = link.find(['h1', 'h2', 'h3'])
-                if heading and ("Trump" in heading.get_text() or "Musk" in heading.get_text())
-                and heading.get_text(strip=True) not in headlines:
+                if heading and "Trump" in heading.get_text() and heading.get_text(strip=True) not in headlines:
                     headlines.append(heading.get_text(strip=True))
                     href = link.get('href', '')
                     if href.startswith('/'):
