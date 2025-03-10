@@ -8,7 +8,7 @@
 This bot posts at 8am, 11am, 2pm, 5pm, and 8pm EST, posting the latest news about Donald Trump.
 
 To get started you may use this link to invite the bot to your server
-https://discord.com/oauth2/authorize?client_id=1344879849029894175&permissions=18432&integration_type=0&scope=bot
+[https://discord.com/oauth2/authorize?client_id=1344879849029894175&permissions=18432&integration_type=0&scope=bot](https://discord.com/oauth2/authorize?client_id=1344879849029894175&permissions=68608&integration_type=0&scope=bot)
 
 - Use the `/ttsetchannel` command to set which channel the bot should post news articles to
 - Use the `/postnews` command to post the latest and most controversial news article about Donald Trump
